@@ -1,0 +1,458 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>рдСрдирд▓рд╛рдЗрди рдИрдВрдЯ рдмреБрдХрд┐рдВрдЧ рдХреЗрдВрджреНрд░</title>
+    <style>
+        :root {
+            --primary-color: #b71c1c;
+            --secondary-color: #fbe9e7;
+            --bg-color: #f0f2f5;
+            --card-bg: #ffffff;
+            --text-color: #222222;
+        }
+
+        * { box-sizing: border-box; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif; margin: 0; padding: 0; }
+        body { background: var(--bg-color); padding: 10px; color: var(--text-color); transition: background 0.3s, color 0.3s; }
+        .card { max-width: 480px; margin: auto; background: var(--card-bg); border-radius: 16px; padding: 18px; box-shadow: 0 4px 20px rgba(0,0,0,0.1); transition: background 0.3s; }
+        
+        /* рдКрдкрд░ рдмреНрд▓рд┐рдВрдХ рдХрд░рдиреЗ рд╡рд╛рд▓рд╛ рдХрд▓рд░рдлреБрд▓ рд╣реЗрд▓реНрдкрд▓рд╛рдЗрди рдмрд╛рд░ */
+        .top-banner {
+            background: linear-gradient(90deg, #d32f2f, #ff9800, #4caf50, #2196f3, #9c27b0, #d32f2f);
+            background-size: 400% 400%;
+            animation: rainbowGradient 4s ease infinite;
+            padding: 8px 10px;
+            border-radius: 10px;
+            text-align: center;
+            color: #ffffff;
+            font-weight: bold;
+            margin-bottom: 14px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+        }
+        @keyframes rainbowGradient {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+        .banner-phone {
+            display: inline-block;
+            background: #ffffff;
+            color: #d32f2f;
+            padding: 4px 10px;
+            border-radius: 20px;
+            font-size: 16px;
+            font-weight: 800;
+            margin-top: 4px;
+            text-decoration: none;
+            animation: pulseBlink 1s infinite alternate;
+        }
+        @keyframes pulseBlink {
+            0% { transform: scale(1); box-shadow: 0 0 0 0 rgba(255,255,255,0.7); }
+            100% { transform: scale(1.04); box-shadow: 0 0 10px 3px rgba(255,255,255,0.9); }
+        }
+
+        .header { text-align: center; margin-bottom: 12px; }
+        .header h1 { color: var(--primary-color); font-size: 22px; transition: color 0.3s; }
+        .header p { color: #666; font-size: 13px; margin-top: 3px; }
+        
+        /* рдИрдВрдЯ рдлреЛрдЯреЛ рд╕реЗрдХреНрд╢рди */
+        .image-container { text-align: center; margin-bottom: 12px; }
+        .brick-img { width: 100%; height: 190px; object-fit: cover; border-radius: 10px; border: 1px solid #ddd; background: #eee; }
+
+        .alert-box { background: #fff8e1; border-left: 4px solid #ffb300; padding: 9px; border-radius: 6px; font-size: 12.5px; margin-bottom: 10px; color: #6d4c41; line-height: 1.4; }
+        .referral-box { background: #e8f5e9; border: 1px dashed #2e7d32; padding: 8px; border-radius: 8px; font-size: 12.5px; color: #1b5e20; margin-bottom: 14px; text-align: center; }
+        
+        .form-group { margin-bottom: 11px; }
+        label { display: block; font-weight: 600; font-size: 13px; margin-bottom: 4px; }
+        input, select { width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 8px; font-size: 14.5px; background: #fafafa; }
+        input:focus, select:focus { border-color: var(--primary-color); outline: none; background: #fff; }
+        
+        .calc-box { background: var(--secondary-color); border: 1px solid #ffccbc; padding: 11px; border-radius: 8px; text-align: center; margin: 12px 0; transition: background 0.3s; }
+        .calc-box .total { font-size: 22px; font-weight: bold; color: var(--primary-color); margin-top: 2px; }
+        .calc-box small { font-size: 11px; color: #777; display: block; margin-top: 3px; }
+        
+        .btn-submit { width: 100%; background: var(--primary-color); color: white; border: none; padding: 12px; font-size: 15.5px; font-weight: bold; border-radius: 8px; cursor: pointer; transition: background 0.3s; }
+        .btn-submit:active { opacity: 0.85; }
+        .btn-call { display: block; text-align: center; width: 100%; background: #25d366; color: white; text-decoration: none; padding: 11px; font-size: 15px; font-weight: bold; border-radius: 8px; margin-top: 9px; }
+
+        /* рдПрдбрдорд┐рди рд╕реЗрдЯрд┐рдВрдЧреНрд╕ рдкреИрдирд▓ */
+        .admin-toggle { text-align: center; margin-top: 20px; }
+        .admin-toggle button { background: none; border: none; color: #777; font-size: 12px; cursor: pointer; text-decoration: underline; }
+        .admin-panel { display: none; margin-top: 14px; padding: 14px; background: #f9f9f9; border: 1px solid #ddd; border-radius: 10px; }
+        .admin-panel h3 { font-size: 14.5px; margin-bottom: 10px; color: var(--primary-color); text-align: center; }
+        .btn-save { background: #1976d2; color: white; border: none; padding: 11px; width: 100%; border-radius: 6px; font-weight: bold; cursor: pointer; margin-top: 12px; }
+        .help-note { font-size: 11px; color: #666; margin-top: 2px; }
+        .color-inputs { display: flex; gap: 10px; align-items: center; margin-top: 4px; }
+        .color-inputs input[type="color"] { width: 45px; height: 38px; padding: 0; cursor: pointer; border-radius: 6px; border: 1px solid #ccc; }
+
+        /* рдбрд╛рдпрдиреЗрдорд┐рдХ рдИрдВрдЯ рд▓рд┐рд╕реНрдЯ рдПрдбрдорд┐рди */
+        .brick-edit-row { display: flex; gap: 6px; margin-bottom: 8px; align-items: center; }
+        .brick-edit-row input[type="text"] { flex: 2; padding: 8px; font-size: 13px; }
+        .brick-edit-row input[type="number"] { flex: 1.2; padding: 8px; font-size: 13px; }
+        .btn-del-row { background: #d32f2f; color: white; border: none; padding: 8px 10px; border-radius: 6px; cursor: pointer; font-weight: bold; }
+        .btn-add-row { background: #388e3c; color: white; border: none; padding: 7px 12px; border-radius: 6px; font-size: 12.5px; cursor: pointer; font-weight: bold; margin-bottom: 10px; }
+    </style>
+</head>
+<body>
+
+<div class="card">
+    <!-- рд╢реАрд░реНрд╖ рд░рдВрдЧ-рдмрд┐рд░рдВрдЧрд╛ рдмреНрд▓рд┐рдВрдХрд┐рдВрдЧ рдирдВрдмрд░ рдкрдЯреНрдЯреА -->
+    <div class="top-banner">
+        <div>тЪб рд╕реАрдзреЗ рдмреБрдХрд┐рдВрдЧ рд╡ рдЬрд╛рдирдХрд╛рд░реА рд╣реЗрд▓реНрдкрд▓рд╛рдЗрди тЪб</div>
+        <a href="tel:+91XXXXXXXXXX" id="bannerCallLink" class="banner-phone">
+            ЁЯУЮ <span id="topPhoneDisplay">рдХреЙрд▓ рдХрд░реЗрдВ: 91XXXXXXXXXX</span>
+        </a>
+    </div>
+
+    <div class="header">
+        <h1 id="displayShopName">ЁЯз▒ рд▓рд╛рд▓ рдИрдВрдЯ рд╕рдкреНрд▓рд╛рдпрд░</h1>
+        <p id="displayShopTagline">рд╕реАрдзреЗ рднрдЯреНрдареЗ рд╕реЗ рдШрд░ рддрдХ рдЙрддреНрддрдо рдХреНрд╡рд╛рд▓рд┐рдЯреА рдкрдХреНрдХреА рдИрдВрдЯреЗрдВ</p>
+    </div>
+
+    <!-- рдИрдВрдЯ рдХреА рд▓рд╛рдЗрд╡ рдлреЛрдЯреЛ -->
+    <div class="image-container">
+        <img id="displayBrickImg" class="brick-img" src="https://images.unsplash.com/photo-1590069261209-f8e9b8642343?w=600&auto=format&fit=crop&q=60" alt="рдИрдВрдЯ рдХреА рддрд╕реНрд╡реАрд░">
+    </div>
+
+    <div class="alert-box">
+        <strong>тЪая╕П рдЬрд░реВрд░реА рдирд┐рдпрдо:</strong> рдлрд░реНрдЬреА рдмреБрдХрд┐рдВрдЧ рд░реЛрдХрдиреЗ рдХреЗ рд▓рд┐рдП рдЧрд╛рдбрд╝реА рдирд┐рдХрд▓рдиреЗ рд╕реЗ рдкрд╣рд▓реЗ <strong>тВ╣1,000 рдмрдпрд╛рдирд╛ (рдЯреЛрдХрди)</strong> рдЕрдирд┐рд╡рд╛рд░реНрдп рд╣реИред рдмрд╛рдХреА рдкреВрд░рд╛ рднреБрдЧрддрд╛рди рдорд╛рд▓ рдШрд░ рдкрд╣реБрдВрдЪрдиреЗ рдкрд░ рд╣реЛрдЧрд╛ред
+    </div>
+
+    <div class="referral-box">
+        ЁЯОБ <strong>рдорд┐рд╕реНрддреНрд░реА / рд░реЗрдлрд░рд▓ рдЗрдирд╛рдо:</strong> рдХрд┐рд╕реА рджреВрд╕рд░реЗ рдХреЛ рдИрдВрдЯ рджрд┐рд▓рд╡рд╛рдиреЗ рдкрд░ рдкреНрд░рддрд┐ рдЧрд╛рдбрд╝реА <strong>тВ╣200 рдирдХрдж рдЗрдирд╛рдо</strong> рдкрд╛рдПрдВ!
+    </div>
+
+    <form id="orderForm">
+        <div class="form-group">
+            <label>рдЧреНрд░рд╛рд╣рдХ рдХрд╛ рдирд╛рдо</label>
+            <input type="text" id="name" placeholder="рдЕрдкрдирд╛ рдкреВрд░рд╛ рдирд╛рдо рд▓рд┐рдЦреЗрдВ" required>
+        </div>
+
+        <div class="form-group">
+            <label>рдореЛрдмрд╛рдЗрд▓ рдирдВрдмрд░</label>
+            <input type="tel" id="phone" placeholder="10 рдЕрдВрдХреЛрдВ рдХрд╛ рдлреЛрди рдирдВрдмрд░" pattern="[0-9]{10}" required>
+        </div>
+
+        <div class="form-group">
+            <label>рдбрд┐рд▓реАрд╡рд░реА рдХрд╛ рдкрддрд╛ (рдЧрд╛рдВрд╡/рд╕реНрдерд╛рди)</label>
+            <input type="text" id="address" placeholder="рдЧрд╛рдВрд╡, рд▓реИрдВрдбрдорд╛рд░реНрдХ, рдмреНрд▓реЙрдХ" required>
+        </div>
+
+        <div class="form-group">
+            <label>рдИрдВрдЯ рдХрд╛ рдкреНрд░рдХрд╛рд░ / рд╕рд╛рдЗрдЬ / рд╡реИрд░рд╛рдпрдЯреА рдЪреБрдиреЗрдВ</label>
+            <select id="brickType" onchange="updateTotal()">
+                <!-- рдПрдбрдорд┐рди рд╕реЗрдЯрд┐рдВрдЧреНрд╕ рд╕реЗ рдбрд╛рдпрдиреЗрдорд┐рдХ рд▓реЛрдб рд╣реЛрдЧрд╛ -->
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label>рдИрдВрдЯреЛрдВ рдХреА рд╕рдВрдЦреНрдпрд╛ (рдЯреБрдХрдбрд╝реЗ)</label>
+            <input type="number" id="qty" value="3000" min="500" step="500" oninput="updateTotal()" required>
+        </div>
+
+        <div class="calc-box">
+            <span>рдЕрдиреБрдорд╛рдирд┐рдд рдИрдВрдЯ рдореВрд▓реНрдп</span>
+            <div class="total" id="totalDisplay">тВ╣0</div>
+            <small>*рдЯреНрд░реИрдХреНрдЯрд░/рдЯреНрд░рдХ рдХрд╛ рднрд╛рдбрд╝рд╛ рджреВрд░реА рдХреЗ рдЕрдиреБрд╕рд╛рд░ рддрдп рд╣реЛрдЧрд╛</small>
+        </div>
+
+        <button type="submit" class="btn-submit" id="submitBtn">рдСрд░реНрдбрд░ рднреЗрдЬреЗрдВ (рд╡реНрд╣рд╛рдЯреНрд╕рдПрдк рдХрдиреНрдлрд░реНрдореЗрд╢рди)</button>
+        <a id="directCallLink" href="tel:+91XXXXXXXXXX" class="btn-call">ЁЯУЮ рд╕реАрдзреЗ рдлреЛрди рдкрд░ рдмрд╛рдд рдХрд░реЗрдВ</a>
+    </form>
+
+    <!-- рдПрдбрдорд┐рди рд╕реЗрдЯрд┐рдВрдЧреНрд╕ рдмрдЯрди -->
+    <div class="admin-toggle">
+        <button type="button" onclick="openAdmin()">тЪЩя╕П рдПрдбрдорд┐рди рд╕реЗрдЯрд┐рдВрдЧреНрд╕ (рдирдпрд╛ рдИрдВрдЯ рдкреНрд░рдХрд╛рд░, рд╕рд╛рдЗрдЬ, рд░реЗрдЯ рд╡ рдХрд▓рд░ рдмрджрд▓реЗрдВ)</button>
+    </div>
+
+    <!-- рдПрдбрдорд┐рди рдкреИрдирд▓ -->
+    <div class="admin-panel" id="adminPanel">
+        <h3>ЁЯЫая╕П рдПрдбрдорд┐рди рдХрдВрдЯреНрд░реЛрд▓ рдкреИрдирд▓</h3>
+        
+        <div class="form-group">
+            <label>ЁЯУЮ рд╣реЗрд▓реНрдкрд▓рд╛рдЗрди / рд╡реНрд╣рд╛рдЯреНрд╕рдПрдк рдореЛрдмрд╛рдЗрд▓ рдирдВрдмрд░</label>
+            <input type="text" id="editPhone" placeholder="10 рдЕрдВрдХреЛрдВ рдХрд╛ рдореЛрдмрд╛рдЗрд▓ рдирдВрдмрд░">
+            <div class="help-note">рдирдпрд╛ рдирдВрдмрд░ рдпрд╣рд╛рдБ рдбрд╛рд▓реЗрдВ (рдХреЙрд▓ рдФрд░ рд╡реНрд╣рд╛рдЯреНрд╕рдПрдк рджреЛрдиреЛрдВ рдмрджрд▓ рдЬрд╛рдПрдЧрд╛)ред</div>
+        </div>
+
+        <div class="form-group">
+            <label>ЁЯОи рд╡реЗрдмрд╕рд╛рдЗрдЯ рдХрд╛ рдореБрдЦреНрдп рдереАрдо рдХрд▓рд░ (рдмрдЯрди рдФрд░ рд╣реЗрдбрд┐рдВрдЧ)</label>
+            <div class="color-inputs">
+                <input type="color" id="editThemeColor" value="#b71c1c">
+                <span id="themeColorCode" style="font-size: 13px; font-weight: bold; color: #555;">#b71c1c</span>
+            </div>
+            <div class="help-note">рдХрд▓рд░ рдкрд┐рдХрд░ рджрдмрд╛рдХрд░ рдордирдкрд╕рдВрдж рд░рдВрдЧ рдЪреБрдиреЗрдВред</div>
+        </div>
+
+        <div class="form-group">
+            <label>рджреБрдХрд╛рди / рдХреЗрдВрджреНрд░ рдХрд╛ рдирд╛рдо</label>
+            <input type="text" id="editShopName">
+        </div>
+
+        <div class="form-group">
+            <label>рдЯреИрдЧрд▓рд╛рдЗрди / рд╡рд┐рд╡рд░рдг</label>
+            <input type="text" id="editShopTagline">
+        </div>
+
+        <!-- рдИрдВрдЯ рдкреНрд░рдХрд╛рд░, рд╕рд╛рдЗрдЬ, рдЯреБрдХрдбрд╝рд╛/рдЧреЛрддрд╛ рдХреА рд▓рд┐рд╕реНрдЯ рдЬреЛ рдЬреЛрдбрд╝реА рдпрд╛ рд╣рдЯрд╛рдИ рдЬрд╛ рд╕рдХрддреА рд╣реИ -->
+        <div class="form-group">
+            <label>ЁЯз▒ рдИрдВрдЯ рдХреЗ рдкреНрд░рдХрд╛рд░, рд╕рд╛рдЗрдЬ рдФрд░ рд░реЗрдЯ (рдкреНрд░рддрд┐ 1000)</label>
+            <div class="help-note" style="margin-bottom: 6px;">рдирд╛рдо рдореЗрдВ рд╕рд╛рдЗрдЬ, рдЧреЛрддрд╛ рдИрдВрдЯ, рдЯреБрдХрдбрд╝рд╛ рдИрдВрдЯ рдХреБрдЫ рднреА рд▓рд┐рдЦ рд╕рдХрддреЗ рд╣реИрдВ:</div>
+            <div id="brickItemsContainer"></div>
+            <button type="button" class="btn-add-row" onclick="addBrickRow()">тЮХ рдирдпрд╛ рдИрдВрдЯ рдкреНрд░рдХрд╛рд░ / рд╕рд╛рдЗрдЬ рдЬреЛрдбрд╝реЗрдВ</button>
+        </div>
+
+        <div class="form-group">
+            <label>рдИрдВрдЯ рдХреА рдирдИ рдлреЛрдЯреЛ (рдХреИрдорд░рд╛ рдпрд╛ рдЧреИрд▓рд░реА)</label>
+            <input type="file" id="editImageInput" accept="image/*" capture="environment">
+        </div>
+
+        <button type="button" class="btn-save" onclick="saveAdminSettings()">ЁЯТ╛ рд╕рднреА рдмрджрд▓рд╛рд╡ рд╕реБрд░рдХреНрд╖рд┐рдд рдХрд░реЗрдВ</button>
+    </div>
+</div>
+
+<script>
+    // =========================================================
+    // рдЖрдкрдХрд╛ рдмреЙрдЯ рдФрд░ рдПрдбрдорд┐рди рдкрд╛рд╕рд╡рд░реНрдб
+    // =========================================================
+    const TELEGRAM_BOT_TOKEN = "YOUR_BOT_TOKEN_HERE";       // рдЕрдкрдирд╛ рдмреЙрдЯ рдЯреЛрдХрди рдпрд╣рд╛рдБ рднрд░реЗрдВ
+    const TELEGRAM_CHAT_ID = "YOUR_CHAT_ID_HERE";           // рдЕрдкрдиреА рдЪреИрдЯ рдЖрдИрдбреА рдпрд╣рд╛рдБ рднрд░реЗрдВ
+    const ADMIN_PASSWORD = "1234";                          // рдПрдбрдорд┐рди рдкреИрдирд▓ рдкрд╛рд╕рд╡рд░реНрдб
+    // =========================================================
+
+    const defaultData = {
+        phoneNumber: "9876543210",
+        themeColor: "#b71c1c",
+        shopName: "ЁЯз▒ рд▓рд╛рд▓ рдИрдВрдЯ рд╕рдкреНрд▓рд╛рдпрд░",
+        tagline: "рд╕реАрдзреЗ рднрдЯреНрдареЗ рд╕реЗ рдШрд░ рддрдХ рдЙрддреНрддрдо рдХреНрд╡рд╛рд▓рд┐рдЯреА рдкрдХреНрдХреА рдИрдВрдЯреЗрдВ",
+        image: "https://images.unsplash.com/photo-1590069261209-f8e9b8642343?w=600&auto=format&fit=crop&q=60",
+        types: [
+            { name: "1 рдирдВрдмрд░ рдЧреЛрддрд╛ рдИрдВрдЯ (рдорд╛рдирдХ рд╕рд╛рдЗрдЬ)", rate: 8000 },
+            { name: "2 рдирдВрдмрд░ рдИрдВрдЯ", rate: 6500 },
+            { name: "рдкреАрд▓рд╛ рдИрдВрдЯ (рджреАрд╡рд╛рд░ рднрд░рд╛рдИ)", rate: 5000 },
+            { name: "рдЯреВрдЯрд╛-рдлреВрдЯрд╛ рдЯреБрдХрдбрд╝рд╛ рдИрдВрдЯ (рд░реЛрдбрд╝рд╛/рдлрд╛рдЙрдВрдбреЗрд╢рди)", rate: 3500 },
+            { name: "рд░рд╛рджрд╛ рдИрдВрдЯ (рдмрдбрд╝рд╛ рд╕рд╛рдЗрдЬ)", rate: 7500 }
+        ]
+    };
+
+    function getFormattedPhone(raw) {
+        let clean = (raw || "").toString().replace(/[^0-9]/g, "");
+        if (clean.length === 10) return "91" + clean;
+        return clean;
+    }
+
+    function applyThemeColor(hex) {
+        document.documentElement.style.setProperty('--primary-color', hex);
+        document.documentElement.style.setProperty('--secondary-color', hex + '15');
+    }
+
+    function renderBrickRows(typesList) {
+        const container = document.getElementById("brickItemsContainer");
+        container.innerHTML = "";
+        typesList.forEach((item, index) => {
+            const row = document.createElement("div");
+            row.className = "brick-edit-row";
+            row.innerHTML = `
+                <input type="text" value="${item.name}" placeholder="рдИрдВрдЯ рдХрд╛ рдирд╛рдо / рд╕рд╛рдЗрдЬ / рдЯреБрдХрдбрд╝рд╛" class="edit-brick-name">
+                <input type="number" value="${item.rate}" placeholder="рд░реЗрдЯ (тВ╣)" class="edit-brick-rate">
+                <button type="button" class="btn-del-row" onclick="this.parentElement.remove()">тЭМ</button>
+            `;
+            container.appendChild(row);
+        });
+    }
+
+    function addBrickRow() {
+        const container = document.getElementById("brickItemsContainer");
+        const row = document.createElement("div");
+        row.className = "brick-edit-row";
+        row.innerHTML = `
+            <input type="text" placeholder="рдЙрджрд╛: рдЯреБрдХрдбрд╝рд╛ рдИрдВрдЯ / 9x4x3 рд╕рд╛рдЗрдЬ" class="edit-brick-name">
+            <input type="number" placeholder="рд░реЗрдЯ рдкреНрд░рддрд┐ 1000" class="edit-brick-rate">
+            <button type="button" class="btn-del-row" onclick="this.parentElement.remove()">тЭМ</button>
+        `;
+        container.appendChild(row);
+    }
+
+    function loadSettings() {
+        const saved = JSON.parse(localStorage.getItem("eentSettings")) || defaultData;
+        const currentPhone = saved.phoneNumber || defaultData.phoneNumber;
+        const formattedPhone = getFormattedPhone(currentPhone);
+        const currentTheme = saved.themeColor || defaultData.themeColor;
+        const typesList = (saved.types && saved.types.length) ? saved.types : defaultData.types;
+
+        // рдХрд▓рд░ рдереАрдо рд▓рдЧрд╛рдирд╛
+        applyThemeColor(currentTheme);
+
+        // рд╢реАрд░реНрд╖ рдмреНрд▓рд┐рдВрдХрд┐рдВрдЧ рдирдВрдмрд░ рдФрд░ рд▓рд┐рдВрдХреНрд╕ рдЕрдкрдбреЗрдЯ
+        document.getElementById("topPhoneDisplay").innerText = "рдХреЙрд▓ рдХрд░реЗрдВ: " + (currentPhone.length === 10 ? currentPhone : currentPhone.slice(-10));
+        document.getElementById("bannerCallLink").href = "tel:+" + formattedPhone;
+        document.getElementById("directCallLink").href = "tel:+" + formattedPhone;
+
+        // рдирд╛рдо, рдЯреИрдЧрд▓рд╛рдЗрди рдФрд░ рдлреЛрдЯреЛ рдЕрдкрдбреЗрдЯ
+        document.getElementById("displayShopName").innerText = saved.shopName;
+        document.getElementById("displayShopTagline").innerText = saved.tagline;
+        document.getElementById("displayBrickImg").src = saved.image;
+
+        // рдПрдбрдорд┐рди рдлреЙрд░реНрдо рдореЗрдВ рднрд░рдирд╛
+        document.getElementById("editPhone").value = currentPhone;
+        document.getElementById("editThemeColor").value = currentTheme;
+        document.getElementById("themeColorCode").innerText = currentTheme;
+        document.getElementById("editShopName").value = saved.shopName;
+        document.getElementById("editShopTagline").value = saved.tagline;
+
+        // рдПрдбрдорд┐рди рдореЗрдВ рдИрдВрдЯ рд▓рд┐рд╕реНрдЯ рд▓реЛрдб рдХрд░рдирд╛
+        renderBrickRows(typesList);
+
+        // рдореБрдЦреНрдп рд╡реЗрдмрд╕рд╛рдЗрдЯ рдХрд╛ рдбреНрд░реЙрдкрдбрд╛рдЙрди (Select Box) рд▓реЛрдб рдХрд░рдирд╛
+        const select = document.getElementById("brickType");
+        select.innerHTML = "";
+        typesList.forEach(item => {
+            const opt = document.createElement("option");
+            opt.value = item.name;
+            opt.setAttribute("data-rate", item.rate);
+            opt.innerText = `${item.name} (тВ╣${item.rate.toLocaleString('en-IN')} / рд╣рдЬрд╝рд╛рд░)`;
+            select.appendChild(opt);
+        });
+
+        updateTotal();
+    }
+
+    document.getElementById("editThemeColor").addEventListener("input", function(e) {
+        document.getElementById("themeColorCode").innerText = e.target.value;
+        applyThemeColor(e.target.value);
+    });
+
+    function openAdmin() {
+        const pass = prompt("рдПрдбрдорд┐рди рдкрд╛рд╕рд╡рд░реНрдб рдбрд╛рд▓реЗрдВ:");
+        if (pass === ADMIN_PASSWORD) {
+            const panel = document.getElementById("adminPanel");
+            panel.style.display = panel.style.display === "block" ? "none" : "block";
+            panel.scrollIntoView({ behavior: 'smooth' });
+        } else if (pass !== null) {
+            alert("рдЧрд▓рдд рдкрд╛рд╕рд╡рд░реНрдб!");
+        }
+    }
+
+    function saveAdminSettings() {
+        const fileInput = document.getElementById("editImageInput");
+        const newPhone = document.getElementById("editPhone").value.trim() || defaultData.phoneNumber;
+        const newColor = document.getElementById("editThemeColor").value;
+
+        // рдбрд╛рдпрдиреЗрдорд┐рдХ рд░реЛ рд╕реЗ рд╕рд╛рд░реЗ рдИрдВрдЯ рдкреНрд░рдХрд╛рд░, рд╕рд╛рдЗрдЬ рдФрд░ рд░реЗрдЯ рдЗрдХрдЯреНрдард╛ рдХрд░рдирд╛
+        const names = document.querySelectorAll(".edit-brick-name");
+        const rates = document.querySelectorAll(".edit-brick-rate");
+        const updatedTypes = [];
+
+        names.forEach((nameInput, i) => {
+            const bName = nameInput.value.trim();
+            const bRate = parseFloat(rates[i].value) || 0;
+            if (bName) {
+                updatedTypes.push({ name: bName, rate: bRate });
+            }
+        });
+
+        const saveProcess = (imgBase64) => {
+            const currentSaved = JSON.parse(localStorage.getItem("eentSettings")) || defaultData;
+            const updatedData = {
+                phoneNumber: newPhone,
+                themeColor: newColor,
+                shopName: document.getElementById("editShopName").value.trim() || defaultData.shopName,
+                tagline: document.getElementById("editShopTagline").value.trim() || defaultData.tagline,
+                image: imgBase64 || currentSaved.image,
+                types: updatedTypes.length ? updatedTypes : defaultData.types
+            };
+
+            localStorage.setItem("eentSettings", JSON.stringify(updatedData));
+            alert("рдирдпрд╛ рд╕рд╛рдЗрдЬ, рдЯреБрдХрдбрд╝рд╛/рдЧреЛрддрд╛ рдИрдВрдЯ, рдирдВрдмрд░, рдХрд▓рд░ рдФрд░ рд╕рднреА рд╕реЗрдЯрд┐рдВрдЧреНрд╕ рд╕реЗрд╡ рд╣реЛ рдЧрдИрдВ!");
+            document.getElementById("adminPanel").style.display = "none";
+            loadSettings();
+        };
+
+        if (fileInput.files && fileInput.files[0]) {
+            const reader = new FileReader();
+            reader.onload = function(e) {
+                saveProcess(e.target.result);
+            };
+            reader.readAsDataURL(fileInput.files[0]);
+        } else {
+            saveProcess(null);
+        }
+    }
+
+    function updateTotal() {
+        const typeSelect = document.getElementById("brickType");
+        if (!typeSelect.options.length) return;
+        const rate = parseFloat(typeSelect.options[typeSelect.selectedIndex].getAttribute("data-rate")) || 0;
+        const qty = parseFloat(document.getElementById("qty").value) || 0;
+        const total = (qty / 1000) * rate;
+        document.getElementById("totalDisplay").innerText = "тВ╣" + Math.round(total).toLocaleString('en-IN');
+        return { total, rate, type: typeSelect.value, qty };
+    }
+
+    document.getElementById("orderForm").addEventListener("submit", function(e) {
+        e.preventDefault();
+        
+        const btn = document.getElementById("submitBtn");
+        btn.innerText = "рдСрд░реНрдбрд░ рднреЗрдЬрд╛ рдЬрд╛ рд░рд╣рд╛ рд╣реИ...";
+        btn.disabled = true;
+
+        const custName = document.getElementById("name").value.trim();
+        const custPhone = document.getElementById("phone").value.trim();
+        const custAddress = document.getElementById("address").value.trim();
+        const orderData = updateTotal();
+
+        const saved = JSON.parse(localStorage.getItem("eentSettings")) || defaultData;
+        const targetPhone = getFormattedPhone(saved.phoneNumber || defaultData.phoneNumber);
+
+        const telegramText = `ЁЯЪи *рдирдпрд╛ рдИрдВрдЯ рдСрд░реНрдбрд░ рджрд░реНрдЬ рд╣реБрдЖ!*
+
+` +
+                             `ЁЯСд *рдЧреНрд░рд╛рд╣рдХ:* ${custName}
+` +
+                             `ЁЯУЮ *рдлреЛрди:* ${custPhone}
+` +
+                             `ЁЯУН *рдкрддрд╛:* ${custAddress}
+` +
+                             `ЁЯз▒ *рдХреНрд╡рд╛рд▓рд┐рдЯреА/рд╕рд╛рдЗрдЬ:* ${orderData.type}
+` +
+                             `ЁЯФв *рд╕рдВрдЦреНрдпрд╛:* ${orderData.qty} рдИрдВрдЯреЗрдВ
+` +
+                             `ЁЯТ░ *рдЕрдиреБрдорд╛рдирд┐рдд рдмрд┐рд▓:* тВ╣${orderData.total.toLocaleString('en-IN')}
+
+` +
+                             `ЁЯУМ *рддреБрд░рдВрдд рдХреЙрд▓ рдХрд░рдХреЗ тВ╣1,000 рдмрдпрд╛рдирд╛ рд▓реЗрдВ рдФрд░ рдСрд░реНрдбрд░ рдкрдХреНрдХрд╛ рдХрд░реЗрдВред*`;
+
+        fetch(`https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN}/sendMessage`, {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({
+                chat_id: TELEGRAM_CHAT_ID,
+                text: telegramText,
+                parse_mode: "Markdown"
+            })
+        })
+        .then(() => {
+            alert("рдСрд░реНрдбрд░ рджрд░реНрдЬ рд╣реЛ рдЧрдпрд╛! рдЕрдм рд╡реНрд╣рд╛рдЯреНрд╕рдПрдк рдкрд░ рдмреБрдХрд┐рдВрдЧ рдХрдиреНрдлрд░реНрдо рдХрд░реЗрдВред");
+            const waText = `рдирдорд╕реНрддреЗ, рдореИрдВрдиреЗ рдИрдВрдЯ рдмреБрдХ рдХрд░рдиреЗ рдХреЗ рд▓рд┐рдП рд╡реЗрдмрд╕рд╛рдЗрдЯ рдкрд░ рдлреЙрд░реНрдо рднрд░рд╛ рд╣реИ:
+
+рдирд╛рдо: ${custName}
+рдИрдВрдЯ: ${orderData.qty} рдкреАрд╕ (${orderData.type})
+рдкрддрд╛: ${custAddress}
+
+рдХреГрдкрдпрд╛ рдХреЙрд▓ рдХрд░рдХреЗ рдмрдпрд╛рдирд╛ рдФрд░ рднрд╛рдбрд╝рд╛ рдХрдиреНрдлрд░реНрдо рдХрд░реЗрдВред`;
+            window.location.href = `https://wa.me/${targetPhone}?text=${encodeURIComponent(waText)}`;
+        })
+        .catch(error => {
+            console.error(error);
+            alert("рдСрд░реНрдбрд░ рднреЗрдЬрдиреЗ рдореЗрдВ рд╕рдорд╕реНрдпрд╛ рдЖрдИ, рдХреГрдкрдпрд╛ рд╕реАрдзреЗ рдХреЙрд▓ рдХрд░реЗрдВред");
+            btn.innerText = "рдСрд░реНрдбрд░ рднреЗрдЬреЗрдВ";
+            btn.disabled = false;
+        });
+    });
+
+    window.onload = loadSettings;
+</script>
+
+</body>
+</html>
