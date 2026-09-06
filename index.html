@@ -20,42 +20,62 @@
 
         .card {
             background: var(--card-bg);
-            border-radius: 12px;
+            border-radius: 14px;
             padding: 16px;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.06);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
             border: 1px solid var(--border-color);
+        }
+
+        /* 1. ऊपर ब्लिंक करती रंग-बिरंगी हेल्पलाइन पट्टी */
+        .rainbow-strip {
+            background: linear-gradient(90deg, #d32f2f, #ff9800, #4caf50, #2196f3, #9c27b0, #d32f2f);
+            background-size: 400% 400%;
+            animation: rainbowFlow 4s ease infinite;
+            padding: 8px 10px;
+            border-radius: 10px;
+            text-align: center;
+            color: #ffffff;
+            font-weight: bold;
+            font-size: 13px;
+        }
+        @keyframes rainbowFlow {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+        .blinking-call-btn {
+            display: inline-block;
+            background: #ffffff;
+            color: #d32f2f;
+            padding: 6px 14px;
+            border-radius: 20px;
+            font-size: 16px;
+            font-weight: 800;
+            margin-top: 6px;
+            text-decoration: none;
+            animation: pulseGlow 1.2s infinite alternate;
+        }
+        @keyframes pulseGlow {
+            0% { transform: scale(1); box-shadow: 0 0 4px rgba(255,255,255,0.7); }
+            100% { transform: scale(1.04); box-shadow: 0 0 12px rgba(255,255,255,1); }
         }
 
         .devotional-bar {
             background: linear-gradient(90deg, #ff8f00, #e65100);
             color: #fff;
             text-align: center;
-            font-size: 13.5px;
+            font-size: 14px;
             font-weight: bold;
             padding: 7px;
             border-radius: 8px;
+            margin-top: 10px;
             letter-spacing: 0.5px;
         }
         .shop-info { text-align: center; margin-top: 10px; }
         .shop-info h1 { font-size: 22px; color: var(--brick-red); }
         .shop-info p { font-size: 12.5px; color: #666; margin-top: 3px; }
 
-        .helpline-box {
-            background: #ffebee;
-            border: 1px dashed var(--brick-red);
-            padding: 10px;
-            border-radius: 8px;
-            text-align: center;
-            margin-top: 10px;
-        }
-        .helpline-box a {
-            color: var(--brick-red);
-            font-size: 17px;
-            font-weight: 800;
-            text-decoration: none;
-            display: inline-block;
-        }
-
+        /* 2. ईंट फोटो व ऊपर फ्रंट में ग्रिड */
         .card-header {
             font-size: 15px;
             color: var(--brick-red);
@@ -87,7 +107,7 @@
             text-align: center;
         }
         .brick-badge .b-name {
-            font-size: 13px;
+            font-size: 12.5px;
             font-weight: bold;
             color: #424242;
             margin-bottom: 4px;
@@ -101,13 +121,14 @@
         .notice-rule {
             background: #f1f8e9;
             border-left: 3px solid #689f38;
-            padding: 8px;
-            font-size: 11.5px;
+            padding: 9px;
+            font-size: 12px;
             color: #33691e;
             border-radius: 4px;
             line-height: 1.4;
         }
 
+        /* 3. बुकिंग फॉर्म */
         .form-row { margin-bottom: 11px; }
         label { display: block; font-size: 12.5px; font-weight: 600; margin-bottom: 4px; }
         input, select {
@@ -143,18 +164,32 @@
             box-shadow: 0 2px 6px rgba(37,211,102,0.3);
         }
 
-        /* एडमिन स्टाइल */
+        /* 4. एडमिन पैनल */
         .admin-link {
             text-align: center;
             background: none;
             border: none;
-            color: #888;
+            color: #777;
             font-size: 12px;
             cursor: pointer;
             text-decoration: underline;
             width: 100%;
+            padding: 4px;
         }
-        .admin-box { display: none; margin-top: 12px; }
+        .admin-box {
+            display: none;
+            margin-top: 14px;
+            background: #ffffff;
+            border: 2px solid #1976d2;
+            border-radius: 10px;
+            padding: 14px;
+        }
+        .admin-box h3 {
+            font-size: 15px;
+            color: #1976d2;
+            text-align: center;
+            margin-bottom: 12px;
+        }
         .dynamic-brick-row {
             display: flex;
             gap: 6px;
@@ -176,7 +211,7 @@
             background: #388e3c;
             color: white;
             border: none;
-            padding: 8px 12px;
+            padding: 9px 12px;
             border-radius: 6px;
             font-size: 13px;
             font-weight: bold;
@@ -194,7 +229,6 @@
             font-weight: bold;
             font-size: 15px;
             cursor: pointer;
-            margin-top: 10px;
         }
     </style>
 </head>
@@ -202,43 +236,45 @@
 
 <div class="wrapper">
 
-    <!-- 1. भट्ठे का नाम व हेल्पलाइन -->
+    <!-- 1. ऊपर ब्लिंक करता रंग-बिरंगा बैनर व भट्ठे का नाम -->
     <div class="card">
+        <div class="rainbow-strip">
+            <div>⚡ सीधे बुकिंग व जानकारी हेल्पलाइन ⚡</div>
+            <a href="tel:+919876543210" id="rainbowCallLink" class="blinking-call-btn">
+                📞 कॉल करें: <span id="topRainbowPhone">9876543210</span>
+            </a>
+        </div>
+
         <div class="devotional-bar">॥ श्री गणेशाय नमः ॥ जय श्री राम ॥</div>
         
         <div class="shop-info">
             <h1 id="viewShopName">श्री राम ईंट उद्योग</h1>
             <p id="viewTagline">सीधे भट्ठे से घर तक - पक्की, मजबूत व सही माप की ईंटें</p>
         </div>
-
-        <div class="helpline-box">
-            <div>सीधे ऑर्डर व पूछताछ हेतु कॉल करें:</div>
-            <a id="phoneHref" href="tel:+919876543210">📞 <span id="viewPhone">9876543210</span></a>
-        </div>
     </div>
 
-    <!-- 2. ईंट फोटो व ऊपर ही अलग-अलग ईंटों के फ्रंट बॉक्सेस -->
+    <!-- 2. ईंट फोटो व ऊपर फ्रंट में सारी ईंटों के रेट ब्लॉक -->
     <div class="card">
         <div class="card-header">🧱 ईंटों की किस्में एवं ताज़ा रेट (प्रति 1000)</div>
-        <img class="brick-img" src="https://images.unsplash.com/photo-1590069261209-f8e9b8642343?w=600&auto=format&fit=crop&q=60" alt="ईंट फोटो[span_2](start_span)"[span_2](end_span)>
+        <img class="brick-img" src="https://images.unsplash.com/photo-1590069261209-f8e9b8642343?w=600&auto=format&fit=crop&q=60" alt="ईंट फोटो">
         
         <div class="brick-grid" id="brickGridDisplay">
             <!-- डायनामिक कार्ड्स आएंगे -->
         </div>
 
         <div class="notice-rule">
-            <strong>नियम:</strong> गाड़ी रवाना होने से पूर्व <strong>₹1,000 बयाना (टोकन)</strong> अनिवार्य है[span_3](start_span)[span_3](end_span)। बाकी भुगतान माल पहुंचने पर[span_4](start_span)[span_4](end_span)।
+            <strong>नियम:</strong> गाड़ी रवाना होने से पूर्व <strong>₹1,000 बयाना (टोकन)</strong> अनिवार्य है। बाकी भुगतान माल पहुंचने पर।
         </div>
     </div>
 
-    <!-- 3. ग्राहक बुकिंग फॉर्म -->
+    <!-- 3. ग्राहक बुकिंग फॉर्म (सारे विकल्पों के साथ) -->
     <div class="card">
         <div class="card-header">📝 ऑनलाइन ईंट बुकिंग फॉर्म</div>
         
         <form id="eentForm">
             <div class="form-row">
                 <label>ग्राहक का नाम</label>
-                <input type="text" id="cName" placeholder="अपना नाम लिखें" required>
+                <input type="text" id="cName" placeholder="अपना पूरा नाम लिखें" required>
             </div>
 
             <div class="form-row">
@@ -252,9 +288,9 @@
             </div>
 
             <div class="form-row">
-                <label>ईंट की किस्म चुनें</label>
+                <label>ईंट की किस्म चुनें (गोटा, टुकड़ा, 1-2 नंबर)</label>
                 <select id="cType" onchange="calcTotal()">
-                    <!-- डायनामिक ऑप्शन -->
+                    <!-- डायनामिक विकल्प लोड होंगे -->
                 </select>
             </div>
 
@@ -273,17 +309,19 @@
         </form>
     </div>
 
-    <!-- 4. भट्ठा मालिक एडमिन कंट्रोल (स्क्रीन से ही ईंट व रेट जोड़ें) -->
-    <div class="card" style="background: #fafafa;">
+    <!-- 4. भट्ठा मालिक एडमिन कंट्रोल -->
+    <div class="card" style="background: #fdfdfd;">
         <button type="button" class="admin-link" onclick="openAdmin()">⚙️ मालिक एडमिन पैनल (फोन नंबर, नए ईंट व रेट बदलें)</button>
         
         <div class="admin-box" id="adminBox">
+            <h3>🛠️ भट्ठा मालिक एडमिन कंट्रोल</h3>
+            
             <div class="form-row">
                 <label>भट्ठे का नाम</label>
                 <input type="text" id="admName">
             </div>
             <div class="form-row">
-                <label>हेल्पलाइन फोन नंबर</label>
+                <label>हेल्पलाइन फोन नंबर (कॉल व व्हाट्सएप)</label>
                 <input type="text" id="admPhone">
             </div>
 
@@ -305,29 +343,31 @@
         tagline: "सीधे भट्ठे से घर तक - पक्की, मजबूत व सही माप की ईंटें",
         phone: "9876543210",
         items: [
-            { name: "1 नंबर (पक्की ईंट)", rate: 8500 },
+            { name: "1 नंबर गोटा ईंट (मानक साइज)", rate: 8500 },
             { name: "2 नंबर ईंट (चिनाई)", rate: 7000 },
             { name: "3 नंबर / पीला ईंट", rate: 5500 },
-            { name: "टुकड़ा / राबिश (भराई)", rate: 4000 }
+            { name: "टुकड़ा ईंट / रोड़ा (राबिश भराई)", rate: 4000 }
         ]
     };
 
     function loadSite() {
-        const d = JSON.parse(localStorage.getItem("bhattaSiteDataCustom")) || defaultData;
+        const d = JSON.parse(localStorage.getItem("bhattaMasterData")) || defaultData;
         
         document.getElementById("viewShopName").innerText = d.name;
         document.getElementById("viewTagline").innerText = d.tagline;
-        document.getElementById("viewPhone").innerText = d.phone;
-        document.getElementById("phoneHref").href = "tel:+91" + d.phone;
+        
+        // ऊपर रंग-बिरंगी पट्टी में नंबर अपडेट
+        document.getElementById("topRainbowPhone").innerText = d.phone;
+        document.getElementById("rainbowCallLink").href = "tel:+91" + d.phone;
 
-        // ऊपर फ्रंट में अलग-अलग कार्ड
+        // ऊपर ग्रिड और फॉर्म दोनों में सारी ईंटें लोड करना
         const grid = document.getElementById("brickGridDisplay");
         grid.innerHTML = "";
         const select = document.getElementById("cType");
         select.innerHTML = "";
 
         d.items.forEach(it => {
-            // ऊपर ग्रिड कार्ड
+            // फ्रंट ग्रिड कार्ड
             const badge = document.createElement("div");
             badge.className = "brick-badge";
             badge.innerHTML = `
@@ -336,14 +376,14 @@
             `;
             grid.appendChild(badge);
 
-            // नीचे फॉर्म सेलेक्ट
+            // फॉर्म सेलेक्ट ऑप्शन
             const opt = document.createElement("option");
             opt.value = it.rate;
             opt.innerText = `${it.name} (₹${it.rate}/हज़ार)`;
             select.appendChild(opt);
         });
 
-        // एडमिन इनपुट
+        // एडमिन इनपुट्स
         document.getElementById("admName").value = d.name;
         document.getElementById("admPhone").value = d.phone;
         renderAdminItems(d.items);
@@ -371,7 +411,7 @@
         const row = document.createElement("div");
         row.className = "dynamic-brick-row";
         row.innerHTML = `
-            <input type="text" placeholder="उदा: 9x4x3 साइज ईंट" class="adm-item-name">
+            <input type="text" placeholder="उदा: गोटा ईंट / 9x4x3" class="adm-item-name">
             <input type="number" placeholder="रेट प्रति 1000" class="adm-item-rate">
             <button type="button" class="btn-remove-row" onclick="this.parentElement.remove()">❌</button>
         `;
@@ -386,10 +426,12 @@
     }
 
     function openAdmin() {
-        const pass = prompt("एडमिन पासवर्ड डालें (डिफ़ॉल्ट: 1234):");[span_5](start_span)[span_5](end_span)
-        if (pass === "1234") {[span_6](start_span)[span_6](end_span)
+        const pass = prompt("एडमिन पासवर्ड डालें (डिफ़ॉल्ट: 1234):");
+        if (pass === "1234") {
             const el = document.getElementById("adminBox");
-            el.style.display = el.style.display === "block" ? "none" : "block";
+            el.style.display = "block";
+            // पासवर्ड सही होते ही स्क्रीन खुद नीचे एडमिन पैनल पर जाएगी
+            el.scrollIntoView({ behavior: 'smooth' });
         } else if (pass !== null) {
             alert("गलत पासवर्ड!");
         }
@@ -415,15 +457,15 @@
             items: newItems.length ? newItems : defaultData.items
         };
 
-        localStorage.setItem("bhattaSiteDataCustom", JSON.stringify(updated));
-        alert("नंबर, ईंटों की नई किस्में और रेट सुरक्षित हो गए!");
+        localStorage.setItem("bhattaMasterData", JSON.stringify(updated));
+        alert("फ़ोन नंबर, सभी ईंटों की किस्में और रेट सुरक्षित हो गए!");
         document.getElementById("adminBox").style.display = "none";
         loadSite();
     }
 
     document.getElementById("eentForm").addEventListener("submit", function(e) {
         e.preventDefault();
-        const d = JSON.parse(localStorage.getItem("bhattaSiteDataCustom")) || defaultData;
+        const d = JSON.parse(localStorage.getItem("bhattaMasterData")) || defaultData;
         const name = document.getElementById("cName").value;
         const phone = document.getElementById("cPhone").value;
         const address = document.getElementById("cAddress").value;
