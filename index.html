@@ -25,26 +25,26 @@
             border: 1px solid var(--border);
         }
 
-        /* 1. रनिंग नियॉन लाइट स्ट्रिप (Never Freeze Animation) */
+        /* 1. रनिंग नियॉन लाइट स्ट्रिप और स्वागत संदेश */
         .neon-run-bar {
             background: linear-gradient(90deg, #ff0055, #ff7700, #ffea00, #00e676, #00b0ff, #d500f9, #ff0055);
             background-size: 600% 600%;
-            animation: runLights 6s linear infinite;
+            animation: runLights 5s linear infinite;
             padding: 12px 10px;
             border-radius: 12px;
             text-align: center;
-            box-shadow: 0 0 15px rgba(255, 119, 0, 0.4);
+            box-shadow: 0 0 18px rgba(255, 119, 0, 0.45);
         }
         @keyframes runLights {
             0% { background-position: 0% 50%; }
             100% { background-position: 100% 50%; }
         }
 
-        .neon-title {
+        .neon-welcome {
             color: #ffffff;
-            font-size: 13px;
+            font-size: 13.5px;
             font-weight: 800;
-            text-shadow: 0 2px 4px rgba(0,0,0,0.6);
+            text-shadow: 0 2px 4px rgba(0,0,0,0.7);
             letter-spacing: 0.5px;
         }
 
@@ -55,18 +55,18 @@
             gap: 8px;
             background: #ffffff;
             color: #b91c1c;
-            padding: 8px 18px;
+            padding: 9px 20px;
             border-radius: 30px;
             font-size: 17px;
             font-weight: 900;
             margin-top: 8px;
             text-decoration: none;
-            box-shadow: 0 0 14px rgba(255, 255, 255, 0.9);
+            box-shadow: 0 0 16px rgba(255, 255, 255, 0.95);
             animation: blinkFast 1.2s infinite ease-in-out;
         }
         @keyframes blinkFast {
             0% { transform: scale(0.96); box-shadow: 0 0 6px #fff; }
-            50% { transform: scale(1.04); box-shadow: 0 0 20px #fff, 0 0 10px #ff7700; }
+            50% { transform: scale(1.04); box-shadow: 0 0 22px #fff, 0 0 12px #ff7700; }
             100% { transform: scale(0.96); box-shadow: 0 0 6px #fff; }
         }
 
@@ -93,7 +93,7 @@
             border: 1px solid #a7f3d0;
         }
 
-        /* 3. कलरफुल बॉर्डर वाले ईंट कार्ड्स */
+        /* 3. कलरफुल ईंट कार्ड्स */
         .brick-grid {
             display: grid;
             grid-template-columns: repeat(2, 1fr);
@@ -109,7 +109,6 @@
             border: 2px solid transparent;
             background-clip: padding-box;
         }
-        /* हर कार्ड पर अलग-अलग ग्रेडिएंट बॉर्डर */
         .brick-card:nth-child(4n+1) { border-color: #ef4444; }
         .brick-card:nth-child(4n+2) { border-color: #f59e0b; }
         .brick-card:nth-child(4n+3) { border-color: #3b82f6; }
@@ -175,7 +174,7 @@
             box-shadow: 0 4px 14px rgba(34, 197, 94, 0.3);
         }
 
-        /* 4. एडमिन पैनल (No Crash - No Prompt) */
+        /* 4. सुरक्षित एडमिन पैनल */
         .admin-auth-box {
             background: #f8fafc;
             border: 1px dashed #94a3b8;
@@ -194,6 +193,21 @@
             border-radius: 10px;
             padding: 14px;
             margin-top: 12px;
+        }
+        .admin-header-flex {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 12px;
+        }
+        .btn-close-admin {
+            background: #64748b;
+            color: #fff;
+            border: none;
+            padding: 4px 10px;
+            border-radius: 6px;
+            font-size: 12px;
+            cursor: pointer;
         }
         .row-item { display: flex; gap: 6px; margin-bottom: 8px; }
         .row-item input[type="text"] { flex: 2; padding: 8px; border: 1px solid var(--border); border-radius: 6px; }
@@ -228,10 +242,10 @@
 
 <div class="wrapper">
 
-    <!-- 1. रनिंग लाइट और ब्लिंकिंग नंबर -->
+    <!-- 1. स्वागत संदेश, रनिंग लाइट और ब्लिंकिंग नंबर -->
     <div class="card">
         <div class="neon-run-bar">
-            <div class="neon-title">⚡ 100% पक्की लाल ईंट आपूर्ति केंद्र ⚡</div>
+            <div class="neon-welcome">🌸 आप सभी ग्राहकों का हार्दिक स्वागत एवं धन्यवाद 🌸</div>
             <a href="tel:+919876543210" id="topCallAnchor" class="blinking-call-btn">
                 📞 <span id="topCallNumber">9876543210</span>
             </a>
@@ -309,7 +323,7 @@
         </form>
     </div>
 
-    <!-- 4. इन-पेज एडमिन पैनल -->
+    <!-- 4. इन-पेज ऑटो-प्रोटेक्टेड एडमिन पैनल -->
     <div class="card">
         <div class="admin-auth-box" id="adminLockBox">
             <div style="font-size: 12px; font-weight: 700; color: #475569;">🔒 भट्ठा मालिक एडमिन पैनल</div>
@@ -321,7 +335,10 @@
         </div>
 
         <div class="admin-body" id="adminControlBox">
-            <h3 style="font-size: 14px; color: #2563eb; margin-bottom: 10px;">⚙️ भट्ठा सेटिंग्स व नई ईंट जोड़ें</h3>
+            <div class="admin-header-flex">
+                <h3 style="font-size: 14px; color: #2563eb;">⚙️ भट्ठा सेटिंग्स व नई ईंट जोड़ें</h3>
+                <button type="button" class="btn-close-admin" onclick="lockAdminDashboard()">🔒 बंद करें</button>
+            </div>
             
             <div class="field">
                 <label>भट्ठे का नाम</label>
@@ -346,7 +363,6 @@
 </div>
 
 <script>
-    // डिफ़ॉल्ट डेटा (अगर लोकल स्टोरेज खाली हो या क्रैश हो तो यह हमेशा चलेगा)
     const CORE_DEFAULTS = {
         name: "श्री राम ईंट उद्योग",
         tagline: "सीधे भट्ठे से घर तक - पक्की, मजबूत व सही माप की ईंटें",
@@ -359,7 +375,6 @@
         ]
     };
 
-    // क्रैश-प्रूफ डेटा लोडर
     function getSafeData() {
         try {
             const raw = localStorage.getItem("bhatta_portal_data_v3");
@@ -380,19 +395,16 @@
         document.getElementById("shopTitle").innerText = data.name || CORE_DEFAULTS.name;
         document.getElementById("shopSubTitle").innerText = data.tagline || CORE_DEFAULTS.tagline;
         
-        // ब्लिंकिंग नंबर अपडेट
         const phone = data.phone || CORE_DEFAULTS.phone;
         document.getElementById("topCallNumber").innerText = phone;
         document.getElementById("topCallAnchor").href = "tel:+91" + phone;
 
-        // ग्रिड और सेलेक्ट बॉक्स भरना
         const grid = document.getElementById("brickGrid");
         const select = document.getElementById("cust_select");
         grid.innerHTML = "";
         select.innerHTML = "";
 
         data.items.forEach(item => {
-            // कलरफुल बॉर्डर वाला कार्ड
             const card = document.createElement("div");
             card.className = "brick-card";
             card.innerHTML = `
@@ -402,14 +414,12 @@
             `;
             grid.appendChild(card);
 
-            // फॉर्म ऑप्शन
             const opt = document.createElement("option");
             opt.value = item.rate;
             opt.innerText = `${item.name} - ₹${item.rate}/हज़ार`;
             select.appendChild(opt);
         });
 
-        // एडमिन इनपुट्स तैयार करना
         document.getElementById("editBhattaName").value = data.name || CORE_DEFAULTS.name;
         document.getElementById("editBhattaPhone").value = phone;
         renderAdminRows(data.items);
@@ -472,6 +482,12 @@
         }
     }
 
+    function lockAdminDashboard() {
+        document.getElementById("adminControlBox").style.display = "none";
+        document.getElementById("adminLockBox").style.display = "block";
+        document.getElementById("inputAdminKey").value = "";
+    }
+
     function saveMasterData() {
         try {
             const names = document.querySelectorAll(".adm-n");
@@ -495,13 +511,16 @@
 
             localStorage.setItem("bhatta_portal_data_v3", JSON.stringify(freshData));
             alert("सफलतापूर्वक सुरक्षित हो गया! नया फोन नंबर व सभी ईंटें लाइव हो चुकी हैं।");
+            
+            // सेव होने के बाद एडमिन पैनल अपने-आप लॉक हो जाएगा
+            lockAdminDashboard();
             renderPortal();
+            window.scrollTo({ top: 0, behavior: 'smooth' });
         } catch (err) {
-            alert("डेटा सेव करने में त्रुटि आई। डिफ़ॉल्ट बहाल किया गया।");
+            alert("डेटा सेव करने में त्रुटि आई।");
         }
     }
 
-    // ऑर्डर सबमिशन
     document.getElementById("orderSubmitForm").addEventListener("submit", function(e) {
         e.preventDefault();
         const data = getSafeData();
